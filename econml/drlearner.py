@@ -328,7 +328,8 @@ class DRLearner(_OrthoLearner):
                     return np.mean(np.average((Y_pred[..., 1:] - Y_pred[..., [0]] - self.model_cate.predict(X))**2,
                                               weights=sample_weight, axis=0))
                 else:
-                    return np.mean([np.average((Y_pred[..., t] - Y_pred[..., 0] - self.models_cate[t - 1].predict(X))**2,
+                    return np.mean([np.average((Y_pred[..., t] - Y_pred[..., 0] -
+                                                self.models_cate[t - 1].predict(X))**2,
                                                weights=sample_weight, axis=0)
                                     for t in np.arange(1, Y_pred.shape[-1])])
 
